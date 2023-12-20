@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "522582382156",
+    "project_id": "wael-abo-hamza-4bd1e",
+    "storage_bucket": "wael-abo-hamza-4bd1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522582382156:android:64fe15409c1385335a06e9",
+        "android_client_info": {
+          "package_name": "com.example.waelfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK46sDEONiPlHK7YApOBJR7diR0RLAt9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
