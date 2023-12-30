@@ -38,6 +38,9 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.2
   awesome_dialog: ^3.1.0
+  google_sign_in: ^6.2.1
+  cloud_firestore: ^4.13.6
+  image_picker: ^1.0.5
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:waelfirebase/Note/addNote.dart';
 import 'package:waelfirebase/auth/login.dart';
 import 'package:waelfirebase/auth/signup.dart';
+import 'package:waelfirebase/categories/add.dart';
+import 'package:waelfirebase/categories/edit.dart';
+import 'package:waelfirebase/constants/constants.dart';
 import 'package:waelfirebase/home_page.dart';
 import 'firebase_options.dart';
 
@@ -56,17 +60,28 @@ class _MyAppState extends State<MyApp> {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme(
+          // backgroundColor: Colors.grey[50],
+          iconTheme: const IconThemeData(color: Colors.orange),
+          titleTextStyle: const TextStyle(
+            color: Colors.orange,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+          ),
+          color: Colors.grey[50],
+        ),
         useMaterial3: true,
       ),
       routes: {
-        "signup": (context) => const SignUp(),
-        "login": (context) => const Login(),
-        "homepage": (context) => const HomePage(),
+        singUp: (context) => const SignUp(),
+        login: (context) => const Login(),
+        homePage: (context) => HomePage(),
+        addCategory: (context) => const AddCategory(),
       },
       debugShowCheckedModeBanner: false,
       home: FirebaseAuth.instance.currentUser != null &&
               FirebaseAuth.instance.currentUser!.emailVerified
-          ? const HomePage()
+          ? HomePage()
           : const Login(),
     );
   }

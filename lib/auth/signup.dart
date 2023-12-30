@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:waelfirebase/components/custom_button.dart';
 import 'package:waelfirebase/components/custom_logo.dart';
 import 'package:waelfirebase/components/text_form_field.dart';
+import 'package:waelfirebase/constants/constants.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -130,12 +131,15 @@ class SignUp extends StatelessWidget {
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
                   try {
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
                       email: email!,
                       password: password!,
-                    );
-                    FirebaseAuth.instance.currentUser!.sendEmailVerification();
-                    Navigator.of(context).pushReplacementNamed('login');
+                    )
+                        .then((value) {
+                      value.user!.sendEmailVerification();
+                      Navigator.of(context).pushReplacementNamed(login);
+                    });
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'weak-password') {
                       print('The password provided is too weak.');
@@ -172,7 +176,7 @@ class SignUp extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed('login');
+                Navigator.of(context).pushNamed(login);
               },
               child: const Center(
                 child: Text.rich(
