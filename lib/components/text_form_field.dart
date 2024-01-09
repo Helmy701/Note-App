@@ -19,6 +19,7 @@ class CustomTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.orange,
       validator: validator,
       controller: myController,
       onChanged: onChange,

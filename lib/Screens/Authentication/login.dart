@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:waelfirebase/auth/signup.dart';
 import 'package:waelfirebase/components/custom_button.dart';
 import 'package:waelfirebase/components/custom_logo.dart';
 import 'package:waelfirebase/components/text_form_field.dart';

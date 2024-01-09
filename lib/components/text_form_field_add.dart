@@ -19,6 +19,7 @@ class CustomTextFormADD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.orange,
       validator: validator,
       controller: myController,
       onChanged: onChange,
@@ -36,14 +37,17 @@ class CustomTextFormADD extends StatelessWidget {
         fillColor: Colors.grey[200],
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
-          borderSide: const BorderSide(
-            color: Colors.grey,
-          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: const BorderSide(
             color: Colors.grey,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            color: Colors.orange,
           ),
         ),
       ),

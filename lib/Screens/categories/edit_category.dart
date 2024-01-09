@@ -72,7 +72,7 @@ class _EditCategoryState extends State<EditCategory> {
                             //   return value;
                             // });
                             await categories.doc(widget.docId).set(
-                                {"name": name.text},
+                                {kCategoryName: name.text},
                                 SetOptions(merge: true)).then((value) {
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   homePage, (route) => false);

@@ -1,16 +1,30 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:waelfirebase/Note/addNote.dart';
-import 'package:waelfirebase/auth/login.dart';
-import 'package:waelfirebase/auth/signup.dart';
-import 'package:waelfirebase/categories/add.dart';
-import 'package:waelfirebase/categories/edit.dart';
+import 'package:waelfirebase/Screens/Authentication/signUp.dart';
+import 'package:waelfirebase/Screens/categories/add_category.dart';
+import 'package:waelfirebase/Screens/categories/home_page.dart';
+
 import 'package:waelfirebase/constants/constants.dart';
-import 'package:waelfirebase/home_page.dart';
+import 'Screens/Authentication/login.dart';
 import 'firebase_options.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+
+  // await Firebase.initializeApp();
+
+  // print("Handling a background message: ${message.messageId}");
+  print('====================background message');
+  print(message.notification!.title);
+  print('====================background message');
+}
+
 void main() async {
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -29,6 +43,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (message.notification != null) {
+        print('====================================');
+        print(message.notification!.title);
+        print(message.notification!.body);
+        print('====================================');
+      }
+    });
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         print('==========================User is currently signed out!');
@@ -65,7 +87,7 @@ class _MyAppState extends State<MyApp> {
           iconTheme: const IconThemeData(color: Colors.orange),
           titleTextStyle: const TextStyle(
             color: Colors.orange,
-            fontSize: 17,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
           color: Colors.grey[50],
@@ -75,13 +97,13 @@ class _MyAppState extends State<MyApp> {
       routes: {
         singUp: (context) => const SignUp(),
         login: (context) => const Login(),
-        homePage: (context) => HomePage(),
+        homePage: (context) => const HomePage(),
         addCategory: (context) => const AddCategory(),
       },
       debugShowCheckedModeBanner: false,
       home: FirebaseAuth.instance.currentUser != null &&
               FirebaseAuth.instance.currentUser!.emailVerified
-          ? HomePage()
+          ? const HomePage()
           : const Login(),
     );
   }
